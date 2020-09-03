@@ -166,7 +166,7 @@ namespace Zadatak_1.ViewModels
             GenderList = genders.GetAllGenders();
             LocationList = locations.GetAllLocations();
             ManagerList = employees.GetAllEmployees();
-            employee = new vwEmployee();
+            Employee = new vwEmployee();
         }
         /// <summary>
         /// This method invokes a methods for adding employee and checks if sector of employee exists. If not exist, invokes a method for adding sector.

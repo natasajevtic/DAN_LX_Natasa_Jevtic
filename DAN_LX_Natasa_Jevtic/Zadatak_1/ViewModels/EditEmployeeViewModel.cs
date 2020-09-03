@@ -164,15 +164,15 @@ namespace Zadatak_1.ViewModels
         public EditEmployeeViewModel(EditEmployeeView editEmployeeView, vwEmployee employeeToEdit)
         {
             this.editEmployeeView = editEmployeeView;
-            this.employee = employeeToEdit;
-            sector = employeeToEdit.SectorName;
+            Employee = employeeToEdit;
+            Sector = employeeToEdit.SectorName;
             GenderList = genders.GetAllGenders();
             LocationList = locations.GetAllLocations();
             ManagerList = employees.GetAllManagers(employee);
             //gets user initial values before editing
             OldEmployee = new vwEmployee
             {
-                NameAndSurname = employeeToEdit.NameAndSurname,                
+                NameAndSurname = employeeToEdit.NameAndSurname,
                 NumberOfIdentityCard = employeeToEdit.NumberOfIdentityCard,
                 PhoneNumber = employeeToEdit.PhoneNumber,
                 JMBG = employeeToEdit.JMBG,
@@ -180,7 +180,7 @@ namespace Zadatak_1.ViewModels
                 Sector = employeeToEdit.Sector,
                 SectorName = employeeToEdit.SectorName,
                 Location = employeeToEdit.Location,
-                Manager = employee.Manager
+                Manager = employeeToEdit.Manager
             };
         }
         /// <summary>
@@ -237,15 +237,32 @@ namespace Zadatak_1.ViewModels
         /// <returns>True if can save data, false if not.</returns>
         public bool CanSaveExecute()
         {
-            if (Employee.NameAndSurname != OldEmployee.NameAndSurname ||  employee.NumberOfIdentityCard != OldEmployee.NumberOfIdentityCard ||
-                employee.JMBG != OldEmployee.JMBG || employee.Gender != OldEmployee.Gender || employee.PhoneNumber != OldEmployee.PhoneNumber
-               || sector != OldEmployee.SectorName || employee.Location != OldEmployee.Location || employee.Manager != OldEmployee.Manager)
+            if (Manager != null)
             {
-                return true;
+
+                if (Employee.NameAndSurname != OldEmployee.NameAndSurname || Employee.NumberOfIdentityCard != OldEmployee.NumberOfIdentityCard ||
+                    Employee.JMBG != OldEmployee.JMBG || Employee.Gender != OldEmployee.Gender || Employee.PhoneNumber != OldEmployee.PhoneNumber
+                   || Sector != OldEmployee.SectorName || Employee.Location != OldEmployee.Location || Manager.EmployeeId != OldEmployee.Manager)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                return false;
+                if(Employee.NameAndSurname != OldEmployee.NameAndSurname || Employee.NumberOfIdentityCard != OldEmployee.NumberOfIdentityCard ||
+                    Employee.JMBG != OldEmployee.JMBG || Employee.Gender != OldEmployee.Gender || Employee.PhoneNumber != OldEmployee.PhoneNumber
+                   || Sector != OldEmployee.SectorName || Employee.Location != OldEmployee.Location)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         /// <summary>
