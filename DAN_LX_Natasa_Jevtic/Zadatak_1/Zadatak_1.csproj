@@ -64,6 +64,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\BindingProxy.cs" />
+    <Compile Include="Validations\IdentityCardNumberValidation.cs" />
+    <Compile Include="Validations\JmbgValidation.cs" />
+    <Compile Include="Validations\NameAndSurnameValidation.cs" />
+    <Compile Include="Validations\PhoneNumberValidation.cs" />
+    <Compile Include="Validations\Wrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
