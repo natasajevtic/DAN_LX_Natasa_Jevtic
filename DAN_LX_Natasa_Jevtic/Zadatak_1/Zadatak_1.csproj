@@ -93,6 +93,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DAN_LX_Natasa_Jevtic.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\Locations.cs" />
     <Compile Include="Models\tblEmployee.cs">
       <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
