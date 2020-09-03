@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Models\Genders.cs" />
     <Compile Include="Models\Locations.cs" />
+    <Compile Include="Models\Sectors.cs" />
     <Compile Include="Models\tblEmployee.cs">
       <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
     </Compile>
