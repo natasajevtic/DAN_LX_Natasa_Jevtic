@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Zadatak_1.Helper;
 
 namespace Zadatak_1.Models
 {
@@ -21,7 +22,7 @@ namespace Zadatak_1.Models
                     tblEmployee employee = new tblEmployee
                     {
                         NameAndSurname = employeeToAdd.NameAndSurname,
-                        DateOfBirth = employeeToAdd.DateOfBirth,
+                        DateOfBirth = CalculateDateOfBirth.Calculate(employeeToAdd.JMBG),
                         NumberOfIdentityCard = employeeToAdd.NumberOfIdentityCard,
                         JMBG = employeeToAdd.JMBG,
                         Gender = employeeToAdd.Gender,
