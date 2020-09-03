@@ -77,7 +77,7 @@ namespace Zadatak_1.Models
                 {
                     tblEmployee employeeToEdit = context.tblEmployees.Where(x => x.EmployeeId == employee.EmployeeId).FirstOrDefault();
                     employeeToEdit.NameAndSurname = employee.NameAndSurname;
-                    employeeToEdit.DateOfBirth = employee.DateOfBirth;
+                    employeeToEdit.DateOfBirth = CalculateDateOfBirth.Calculate(employee.JMBG);
                     employeeToEdit.JMBG = employee.JMBG;
                     employeeToEdit.NumberOfIdentityCard = employee.NumberOfIdentityCard;
                     employeeToEdit.Gender = employee.Gender;
@@ -85,7 +85,7 @@ namespace Zadatak_1.Models
                     employeeToEdit.Sector = employee.Sector;
                     employeeToEdit.LocationId = employee.LocationId;
                     employeeToEdit.Manager = employee.Manager;
-                    context.SaveChanges();
+                    context.SaveChanges();                    
                     return true;
                 }
             }

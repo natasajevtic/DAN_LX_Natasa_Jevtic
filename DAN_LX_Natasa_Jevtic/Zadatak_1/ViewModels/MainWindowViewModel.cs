@@ -137,7 +137,7 @@ namespace Zadatak_1.ViewModels
         {
             try
             {
-                EditEmployeeView editUser = new EditEmployeeView();
+                EditEmployeeView editUser = new EditEmployeeView(Employee);
                 editUser.ShowDialog();
                 //invokes method to update a list of users
                 EmployeeList = employees.GetAllEmployees();

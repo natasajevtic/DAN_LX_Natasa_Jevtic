@@ -4,9 +4,167 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zadatak_1.Views"
+        xmlns:validation ="clr-namespace:Zadatak_1.Validations"
         mc:Ignorable="d"
-        Title="EditEmployeeView" Height="450" Width="800">
+        Title="Edit employee" MinHeight="400" MinWidth="450" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="6"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="auto"/>            
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" Grid.Row="1" Content="Name:"/>        
+        <Label Grid.Column="1" Grid.Row="3" Content="Number of identity card:"/>
+        <Label Grid.Column="1" Grid.Row="5" Content="JMBG:"/>
+        <Label Grid.Column="1" Grid.Row="7" Content="Gender:"/>
+        <Label Grid.Column="1" Grid.Row="9" Content="Phone number:"/>
+        <Label Grid.Column="1" Grid.Row="11" Content="Sector:"/>
+        <Label Grid.Column="1" Grid.Row="13" Content="Location:"/>
+        <Label Grid.Column="1" Grid.Row="15" Content="Manager:"/>
+
+        <TextBox x:Name="txtNameAndSurname"
+                 Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                 Grid.Column="3"
+                 Grid.Row="1">
+            <TextBox.Text>
+                <Binding Path="Employee.NameAndSurname"
+                         UpdateSourceTrigger="PropertyChanged"
+                         ValidatesOnDataErrors="True"
+                         NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <validation:NameAndSurnameValidation/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox x:Name="txtIdentityCardNumber"
+                 Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                 Grid.Column="3"
+                 Grid.Row="3"
+                 xmlns:Bind="clr-namespace:Zadatak_1.Helper">
+            <TextBox.Resources>
+                <Bind:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            </TextBox.Resources>
+            <TextBox.Text>
+                <Binding Path="Employee.NumberOfIdentityCard" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:IdentityCardNumberValidation>
+                            <validation:IdentityCardNumberValidation.Wrapper>
+                                <validation:Wrapper OldIdCardNumber="{Binding Data.OldEmployee.NumberOfIdentityCard, Source={StaticResource proxy}, UpdateSourceTrigger=PropertyChanged}"/>
+                            </validation:IdentityCardNumberValidation.Wrapper>
+                        </validation:IdentityCardNumberValidation>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
+        <TextBox x:Name="txtJmbg"
+                 Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                 Grid.Column="3"
+                 Grid.Row="5"
+                 xmlns:Bind="clr-namespace:Zadatak_1.Helper">
+            <TextBox.Resources>
+                <Bind:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            </TextBox.Resources>
+            <TextBox.Text>
+                <Binding Path="Employee.JMBG" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:JmbgValidation>
+                            <validation:JmbgValidation.Wrapper>
+                                <validation:Wrapper OldJmbg="{Binding Data.OldEmployee.JMBG, Source={StaticResource proxy}, UpdateSourceTrigger=PropertyChanged}"/>
+                            </validation:JmbgValidation.Wrapper>
+                        </validation:JmbgValidation>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         
+        <ComboBox Grid.Column="3" Grid.Row="7" DisplayMemberPath="GenderIdentity"
+                  ItemsSource="{Binding GenderList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Gender, UpdateSourceTrigger=PropertyChanged}"
+                  Text="{Binding Employee.GenderIdentity}"/>
+
+        <TextBox x:Name="txtPhoneNumber"
+                 Validation.ErrorTemplate="{StaticResource errorTemplate}"
+                 Grid.Column="3"
+                 Grid.Row="9"
+                 xmlns:Bind="clr-namespace:Zadatak_1.Helper">
+            <TextBox.Resources>
+                <Bind:BindingProxy x:Key="proxy" Data="{Binding}"/>
+            </TextBox.Resources>
+            <TextBox.Text>
+                <Binding Path="Employee.PhoneNumber" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:PhoneNumberValidation>
+                            <validation:PhoneNumberValidation.Wrapper>
+                                <validation:Wrapper OldPhoneNumber="{Binding Data.OldEmployee.PhoneNumber, Source={StaticResource proxy}, UpdateSourceTrigger=PropertyChanged}"/>
+                            </validation:PhoneNumberValidation.Wrapper>
+                        </validation:PhoneNumberValidation>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        
+        <TextBox Grid.Column="3" Grid.Row="11" Text="{Binding Sector}"/>
+        
+        <ComboBox Grid.Column="3" Grid.Row="13" DisplayMemberPath="Location"
+                  ItemsSource="{Binding LocationList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Location, UpdateSourceTrigger=PropertyChanged}"
+                  Text="{Binding Employee.Location}"/>
+        
+        <ComboBox Grid.Column="3" Grid.Row="15" DisplayMemberPath ="NameAndSurname"
+                  ItemsSource="{Binding ManagerList, UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding Manager, UpdateSourceTrigger=PropertyChanged}"
+                  Text="{Binding Employee.ManagerName}"/>
+
+
+        <Button Grid.Column="1" 
+                Grid.Row="17" 
+                Content="Save" 
+                Command="{Binding Save}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtNameAndSurname}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtIdentityCardNumber}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtJmbg}" Value="False"/>
+                                <Condition Binding="{Binding Path=(Validation.HasError), ElementName=txtPhoneNumber}" Value="False"/>
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="IsEnabled" Value="True"/>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        
+        <Button Grid.Column="3" Grid.Row="17" Content="Cancel" Command="{Binding Cancel}" Width="130" HorizontalAlignment="Center"/>
+
     </Grid>
 </Window>

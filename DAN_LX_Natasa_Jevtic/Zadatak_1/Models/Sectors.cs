@@ -78,5 +78,30 @@ namespace Zadatak_1.Models
                 return 0;
             }
         }
+
+        /// <summary>
+        /// This method checks if sector has employees, and if there are no employees deletes sector.
+        /// </summary>
+        /// <param name="sectorName">Sector name.</param>        
+        public void DeleteSector(string sectorName)
+        {
+            try
+            {
+                using (Employee_DataEntities context = new Employee_DataEntities())
+                {
+                    tblSector sectorToDelete = context.tblSectors.Where(x => x.SectorName == sectorName).FirstOrDefault();
+                    var peopleInSector = context.tblEmployees.Where(x => x.Sector == sectorToDelete.SectorId).ToList();                    
+                    if (peopleInSector.Count == 0)
+                    {                        
+                        context.tblSectors.Remove(sectorToDelete);
+                        context.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Exception" + ex.Message.ToString());               
+            }
+        }
     }
 }
