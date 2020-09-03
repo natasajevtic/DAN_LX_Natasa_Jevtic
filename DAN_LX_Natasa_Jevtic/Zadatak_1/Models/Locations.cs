@@ -8,6 +8,7 @@ namespace Zadatak_1.Models
 {
     class Locations
     {
+        public Logger logger = new Logger();
         /// <summary>
         /// This method reads locations from a file, adds them to DbSet, and then saves changes to the database.
         /// </summary>
@@ -32,6 +33,7 @@ namespace Zadatak_1.Models
                             //if not exists, adding location to DbSet and saving changes to database
                             context.tblLocations.Add(location);
                             context.SaveChanges();
+                            logger.LogAction("Location " + location.Address + ", " + location.City + ", " + location.State + " created.");
                         }
                     }
                 }

@@ -8,6 +8,7 @@ namespace Zadatak_1.Models
 {
     class Employees
     {
+        public Logger logger = new Logger();
         /// <summary>
         /// This method adds employee to DbSet and then save changes to database.
         /// </summary>
@@ -34,6 +35,7 @@ namespace Zadatak_1.Models
                     context.tblEmployees.Add(employee);
                     context.SaveChanges();
                     employeeToAdd.EmployeeId = employee.EmployeeId;
+                    logger.LogAction("Employee " + employeeToAdd.NameAndSurname + " created. ID: " + employeeToAdd.EmployeeId + " JMBG: " + employeeToAdd.JMBG);
                     return true;
                 }
             }
@@ -85,7 +87,8 @@ namespace Zadatak_1.Models
                     employeeToEdit.Sector = employee.Sector;
                     employeeToEdit.LocationId = employee.LocationId;
                     employeeToEdit.Manager = employee.Manager;
-                    context.SaveChanges();                    
+                    context.SaveChanges();
+                    logger.LogAction("Employee with JMBG " + employeeToEdit.JMBG + " updated.");
                     return true;
                 }
             }
@@ -114,6 +117,7 @@ namespace Zadatak_1.Models
                         foreach (var employee in employeeOfThisManager)
                         {
                             employee.Manager = null;
+                            logger.LogAction("Employee with JMBG " + employee.JMBG + " updated so he has no manager.");
                         }
                     }
                     //finding employee with forwarded id
@@ -123,11 +127,13 @@ namespace Zadatak_1.Models
                     //removing employee from DbSet and saving changes to database
                     context.tblEmployees.Remove(employeeToDelete);
                     context.SaveChanges();
+                    logger.LogAction("Employee with JMBG " + employeeToDelete.JMBG + " deleted.");
                     if (peopleInSector.Count() == 1)
                     {
                         var sector = context.tblSectors.Where(x => x.SectorId == employeeToDelete.Sector).FirstOrDefault();
                         context.tblSectors.Remove(sector);
                         context.SaveChanges();
+                        logger.LogAction("Sector " + sector.SectorName + " with ID: " + sector.SectorId + " deleted.");
                     }
                     return true;
                 }

@@ -67,6 +67,7 @@
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Helper\BindingProxy.cs" />
     <Compile Include="Helper\CalculateDateOfBirth.cs" />
+    <Compile Include="Models\Logger.cs" />
     <Compile Include="Validations\IdentityCardNumberValidation.cs" />
     <Compile Include="Validations\JmbgValidation.cs" />
     <Compile Include="Validations\NameAndSurnameValidation.cs" />

@@ -6,6 +6,7 @@ namespace Zadatak_1.Models
 {
     class Sectors
     {
+        public Logger logger = new Logger();
         /// <summary>
         /// This method adds sector to DbSet and then saves changes to the database.
         /// </summary>
@@ -22,6 +23,7 @@ namespace Zadatak_1.Models
                     };
                     context.tblSectors.Add(sector);
                     context.SaveChanges();
+                    logger.LogAction("Sector " + sector.SectorName + " with ID " + sector.SectorId + " created.");
                 }
             }
             catch (Exception ex)
@@ -95,6 +97,7 @@ namespace Zadatak_1.Models
                     {                        
                         context.tblSectors.Remove(sectorToDelete);
                         context.SaveChanges();
+                        logger.LogAction("Sector " + sectorToDelete.SectorName + " with ID " + sectorToDelete.SectorId + " deleted.");
                     }
                 }
             }
