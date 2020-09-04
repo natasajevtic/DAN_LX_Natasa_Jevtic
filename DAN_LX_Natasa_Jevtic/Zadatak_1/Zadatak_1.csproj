@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,6 +64,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Helper\BindingProxy.cs" />
+    <Compile Include="Helper\CalculateDateOfBirth.cs" />
+    <Compile Include="Models\Logger.cs" />
+    <Compile Include="Validations\IdentityCardNumberValidation.cs" />
+    <Compile Include="Validations\JmbgValidation.cs" />
+    <Compile Include="Validations\NameAndSurnameValidation.cs" />
+    <Compile Include="Validations\PhoneNumberValidation.cs" />
+    <Compile Include="Validations\Wrapper.cs" />
+    <Compile Include="ViewModels\AddEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\EditEmployeeViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\AddEmployeeView.xaml.cs">
+      <DependentUpon>AddEmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -67,8 +95,59 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\DAN_LX_Natasa_Jevtic.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAN_LX_Natasa_Jevtic.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAN_LX_Natasa_Jevtic.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DAN_LX_Natasa_Jevtic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DAN_LX_Natasa_Jevtic.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employees.cs" />
+    <Compile Include="Models\Genders.cs" />
+    <Compile Include="Models\Locations.cs" />
+    <Compile Include="Models\Sectors.cs" />
+    <Compile Include="Models\tblEmployee.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGender.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblLocation.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSector.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwEmployee.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwGender.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwLocation.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vwSector.cs">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +165,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\DAN_LX_Natasa_Jevtic.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DAN_LX_Natasa_Jevtic.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\DAN_LX_Natasa_Jevtic.edmx.diagram">
+      <DependentUpon>DAN_LX_Natasa_Jevtic.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +180,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\DAN_LX_Natasa_Jevtic.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DAN_LX_Natasa_Jevtic.Context.cs</LastGenOutput>
+      <DependentUpon>DAN_LX_Natasa_Jevtic.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DAN_LX_Natasa_Jevtic.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DAN_LX_Natasa_Jevtic.edmx</DependentUpon>
+      <LastGenOutput>DAN_LX_Natasa_Jevtic.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
