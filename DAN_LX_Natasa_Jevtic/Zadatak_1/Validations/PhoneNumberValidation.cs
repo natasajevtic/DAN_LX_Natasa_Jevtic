@@ -46,7 +46,7 @@ namespace Zadatak_1.Validations
             }
             else
             {
-                return new ValidationResult(false, "Invalid number.");
+                return new ValidationResult(false, "Number must start with +3816, followed by 7 or 8 digits.");
             }
         }
         public Wrapper Wrapper { get; set; }

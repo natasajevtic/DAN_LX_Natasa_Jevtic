@@ -47,8 +47,12 @@ namespace Zadatak_1.Validations
                     DateTime dateOfBirth = DateTime.Parse(validyear + "-" + month + "-" + day);
                     //calculates age 
                     int ageInDays = (DateTime.Today - dateOfBirth).Days;
-                    //if age less than 15 returns false, else returns true
-                    if (ageInDays < 5479)
+                    //if age less than 15 returns false, else returns true                    
+                    if (dateOfBirth > DateTime.Now)
+                    {
+                        return new ValidationResult(false, "Cannot be in the future.");
+                    }
+                    else if (ageInDays < 5479)
                     {
                         return new ValidationResult(false, "The user must be at least 15 years old.");
                     }
@@ -89,7 +93,6 @@ namespace Zadatak_1.Validations
                 {
                     return new ValidationResult(false, "Jmbg contains invalid date.");
                 }
-
             }
         }
         public Wrapper Wrapper { get; set; }

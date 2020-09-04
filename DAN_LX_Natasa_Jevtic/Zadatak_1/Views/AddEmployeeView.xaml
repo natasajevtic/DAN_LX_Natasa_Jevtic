@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Zadatak_1.Views"       
         xmlns:validation ="clr-namespace:Zadatak_1.Validations"
         mc:Ignorable="d"
-        Title="Add new employee" MinHeight="400" MinWidth="450" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
+        Title="Add new employee" MinHeight="400" MinWidth="500" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
