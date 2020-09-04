@@ -128,7 +128,14 @@ namespace Zadatak_1.ViewModels
 
         public bool CanDeleteEmployeeExecute()
         {
-            return true;
+            if (Employee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         /// <summary>
         /// This method invokes a method for opening a window for editing employee.
@@ -151,7 +158,14 @@ namespace Zadatak_1.ViewModels
 
         public bool CanEditEmployeeExecute()
         {
-            return true;
+            if (Employee != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
         /// <summary>        
         /// This method invokes a method for opening a window for adding employees.        

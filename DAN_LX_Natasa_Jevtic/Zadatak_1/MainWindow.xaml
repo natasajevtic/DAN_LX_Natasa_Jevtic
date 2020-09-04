@@ -9,7 +9,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -23,7 +23,10 @@
         <Grid Grid.Column="1" Grid.Row="3">
             <DataGrid ItemsSource="{Binding EmployeeList,UpdateSourceTrigger=PropertyChanged}"
                 SelectedItem="{Binding Employee, UpdateSourceTrigger=PropertyChanged}"
-                IsReadOnly="True" HeadersVisibility="Column"  AutoGenerateColumns="False">
+                IsReadOnly="True" HeadersVisibility="Column"  AutoGenerateColumns="False"
+                ScrollViewer.CanContentScroll="True" 
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Employee" Binding="{Binding NameAndSurname}"/>
                     <DataGridTextColumn Header="Date of birth" Binding="{Binding DateOfBirth, StringFormat=d}"/>
